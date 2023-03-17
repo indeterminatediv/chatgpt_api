@@ -1,0 +1,26 @@
+import openai
+import os
+
+# set up OpenAI API key
+openai.api_key = os.environ["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"]
+
+# define a prompt to generate text from
+prompt = "The best way to learn Python programming is to..."
+
+# set up the OpenAI completion parameters
+model_engine = "text-davinci-002" # you can change this to another model if desired
+max_tokens = 100 # the maximum number of tokens (words) to generate
+temperature = 0.7 # controls the randomness of the generated text
+stop_sequence = "." # generate text up to the first period (end of sentence)
+
+# generate the text using the OpenAI API
+response = openai.Completion.create(
+  engine=model_engine,
+  prompt=prompt,
+  max_tokens=max_tokens,
+  temperature=temperature,
+  stop=stop_sequence
+)
+
+# print the generated text
+print(response.choices[0].text.strip())
